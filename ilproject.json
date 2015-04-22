@@ -1,0 +1,24 @@
+{
+    "project": "ilproject", 
+    "platform": {
+        "pc": {
+            "cxx": "g++", 
+            "ar": "ar"
+        }, 
+        "android": {
+            "global": {
+                "include": "-I$(NDK_HOME)/sources/cxx-stl/gnu-libstdc++/include"
+            }, 
+            "x86": {
+                "cxx": "$(NDK_HOME)/toolchains/x86-4.4.3/prebuilt/linux-x86/bin/i686-android-linux-g++ --sysroot=$(NDK_HOME)/platforms/android-14/arch-x86", 
+                "ar": "$(NDK_HOME)/toolchains/x86-4.4.3/prebuilt/linux-x86/bin/i686-android-linux-ar", 
+                "libs": "$(NDK_HOME)/sources/cxx-stl/gnu-libstdc++/libs/x86/libsupc++.a"
+            }, 
+            "armeabi": {
+                "cxx": "$(NDK_HOME)/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-g++ --sysroot=$(NDK_HOME)/platforms/android-8/arch-arm/", 
+                "ar": "$(NDK_HOME)/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-ar", 
+                "libs": "$(NDK_HOME)/sources/cxx-stl/gnu-libstdc++/libs/armeabi/libsupc++.a"
+            }
+        }
+    }
+}
