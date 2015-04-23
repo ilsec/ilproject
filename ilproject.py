@@ -48,24 +48,27 @@ ifeq ($(all),)
 project := {0}_$(arch)
 endif
 
+# INCLUDE HEADERS
+CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:{1}
+export CPLUS_INCLUDE_PATH
+
 ifeq ($(platform), android)
 
 ifeq ($(arch),x86)
-INCLUDES += {1}
 CXX :={2}
 AR :={3}
 global_OBJECTS += {4}
 endif
 
 ifeq ($(arch),arm)
-INCLUDES += {1}
 CXX := {5}
 AR := {6}
 global_OBJECTS += {7}
 endif
 
 else
-INCLUDES +=
+
+global_OBJECTS += {8}
 LDADD += -lpthread
 LDADD += -ldl
 endif
@@ -119,7 +122,8 @@ def load(n):
                            c["platform"]["android"]["x86"]["libs"],
                            c["platform"]["android"]["armeabi"]["cxx"],
                            c["platform"]["android"]["armeabi"]["ar"],
-                           c["platform"]["android"]["armeabi"]["libs"])
+                           c["platform"]["android"]["armeabi"]["libs"],
+                           c["platform"]["pc"]["libs"])
 
 def create(c, i, o):
     unzip(i,o)

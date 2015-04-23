@@ -3,11 +3,12 @@
     "platform": {
         "pc": {
             "cxx": "g++", 
-            "ar": "ar"
+            "ar": "ar",
+            "libs": " "
         }, 
         "android": {
             "global": {
-                "include": "-I$(NDK_HOME)/sources/cxx-stl/gnu-libstdc++/include"
+                "include": "$(NDK_HOME)/sources/cxx-stl/gnu-libstdc++/include libs"
             }, 
             "x86": {
                 "cxx": "$(NDK_HOME)/toolchains/x86-4.4.3/prebuilt/linux-x86/bin/i686-android-linux-g++ --sysroot=$(NDK_HOME)/platforms/android-14/arch-x86", 
