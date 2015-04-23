@@ -54,21 +54,23 @@ export CPLUS_INCLUDE_PATH
 
 ifeq ($(platform), android)
 
+INCLUDE := {2}
+
 ifeq ($(arch),x86)
-CXX :={2}
-AR :={3}
-global_OBJECTS += {4}
+CXX :={3}
+AR :={4}
+global_OBJECTS += {5}
 endif
 
 ifeq ($(arch),arm)
-CXX := {5}
-AR := {6}
-global_OBJECTS += {7}
+CXX := {6}
+AR := {7}
+global_OBJECTS += {8}
 endif
 
 else
-
-global_OBJECTS += {8}
+INCLUDE := {9}
+global_OBJECTS += {10}
 LDADD += -lpthread
 LDADD += -ldl
 endif
@@ -115,15 +117,17 @@ def load(n):
         c = json.load(f)
 
     #格式化内容
-    return Makevars.format(c["project"],   
-                           c["platform"]["android"]["global"]["include"],
-                           c["platform"]["android"]["x86"]["cxx"],
-                           c["platform"]["android"]["x86"]["ar"],
-                           c["platform"]["android"]["x86"]["libs"],
-                           c["platform"]["android"]["armeabi"]["cxx"],
-                           c["platform"]["android"]["armeabi"]["ar"],
-                           c["platform"]["android"]["armeabi"]["libs"],
-                           c["platform"]["pc"]["libs"])
+    return Makevars.format(c["project"],#0
+                           c["platform"]["global"]["include"],#1
+                           c["platform"]["android"]["include"],#2
+                           c["platform"]["android"]["x86"]["cxx"],#3
+                           c["platform"]["android"]["x86"]["ar"],#4
+                           c["platform"]["android"]["x86"]["libs"],#5
+                           c["platform"]["android"]["armeabi"]["cxx"],#6
+                           c["platform"]["android"]["armeabi"]["ar"],#7
+                           c["platform"]["android"]["armeabi"]["libs"],#8
+                           c["platform"]["pc"]["include"],#9
+                           c["platform"]["pc"]["libs"])#10
 
 def create(c, i, o):
     unzip(i,o)
